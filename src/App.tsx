@@ -1,9 +1,10 @@
 import React from 'react';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Settings as SettingsIcon } from 'lucide-react';
 import { ChatMessage } from './components/ChatMessage';
 import { ChatInput } from './components/ChatInput';
 import { Input } from './components/Input';
 import { Button } from './components/Button';
+import { Settings } from './components/Settings';
 import { useChatScroll } from './hooks/useChatScroll';
 import { useOllamaChat } from './hooks/useOllamaChat';
 
@@ -11,6 +12,7 @@ export default function App() {
   const [apiUrl, setApiUrl] = React.useState('http://localhost:11434');
   const [leftModel, setLeftModel] = React.useState('llamatrump-v1');
   const [rightModel, setRightModel] = React.useState('llama3.1');
+  const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
   
   const leftChat = useOllamaChat(apiUrl, leftModel);
   const rightChat = useOllamaChat(apiUrl, rightModel);
@@ -38,16 +40,18 @@ export default function App() {
             <h1 className="text-xl font-medium tracking-wide">YMCA</h1>
           </div>
           <div className="flex items-center gap-4">
-            <Input
-              value={apiUrl}
-              onChange={(e) => setApiUrl(e.target.value)}
-              placeholder="Ollama API URL"
-              className="w-64 bg-zinc-800 border-zinc-700 text-white"
-            />
+            <Button
+              variant="icon"
+              onClick={() => setIsSettingsOpen(true)}
+              title="设置"
+              className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+            >
+              <SettingsIcon size={20} />
+            </Button>
             <Button
               variant="icon"
               onClick={handleClearChat}
-              title="Clear chat"
+              title="清空对话"
               className="text-zinc-400 hover:text-white hover:bg-zinc-800"
             >
               <Trash2 size={20} />
@@ -121,6 +125,17 @@ export default function App() {
           />
         </div>
       </main>
+
+      <Settings
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        apiUrl={apiUrl}
+        onApiUrlChange={setApiUrl}
+        leftModel={leftModel}
+        onLeftModelChange={setLeftModel}
+        rightModel={rightModel}
+        onRightModelChange={setRightModel}
+      />
     </div>
   );
 }
