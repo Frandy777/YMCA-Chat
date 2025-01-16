@@ -1,4 +1,3 @@
-import React from 'react';
 import { MessageCircle, Bot } from 'lucide-react';
 import { Message } from '../types/chat';
 
