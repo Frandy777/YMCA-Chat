@@ -10,8 +10,8 @@ import { useOllamaChat } from './hooks/useOllamaChat';
 
 export default function App() {
   const [apiUrl, setApiUrl] = React.useState('http://localhost:11434');
-  const [leftModel, setLeftModel] = React.useState('llamatrump-v1');
-  const [rightModel, setRightModel] = React.useState('llama3.1');
+  const [leftModel, setLeftModel] = React.useState('llama3.1:8b');
+  const [rightModel, setRightModel] = React.useState('Frandy/llamatrump-v1.1');
   const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
   
   const leftChat = useOllamaChat(apiUrl, leftModel);
@@ -33,47 +33,29 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
-      <header className="bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800/50 sticky top-0 z-10 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-white rounded-full" />
-            <h1 className="text-xl font-medium tracking-wide">YMCA</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button
-              variant="icon"
-              onClick={() => setIsSettingsOpen(true)}
-              title="设置"
-              className="text-zinc-400 hover:text-white hover:bg-zinc-800"
-            >
-              <SettingsIcon size={20} />
-            </Button>
-            <Button
-              variant="icon"
-              onClick={handleClearChat}
-              title="清空对话"
-              className="text-zinc-400 hover:text-white hover:bg-zinc-800"
-            >
-              <Trash2 size={20} />
-            </Button>
-          </div>
-        </div>
-      </header>
-
       <main className="flex-1 w-full mx-auto flex relative">
         {/* Left Chat */}
         <div className="flex-1 flex flex-col border-r border-zinc-800">
-          <div className="p-4 border-b border-zinc-800 sticky top-[73px] bg-black z-10">
-            <Input
-              value={leftModel}
-              onChange={(e) => setLeftModel(e.target.value)}
-              placeholder="Left model name"
-              className="w-full bg-zinc-800 border-zinc-700 text-white"
-            />
+          <div className="p-4 border-b border-zinc-800 sticky top-0 bg-black z-10">
+            <div className="flex items-center justify-between">
+              <Button
+                variant="icon"
+                onClick={() => setIsSettingsOpen(true)}
+                title="设置"
+                className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+              >
+                <SettingsIcon size={18} />
+              </Button>
+              <div className="flex items-center gap-2 text-zinc-300">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-base font-bold">Llama 3.1</span>
+              </div>
+              <div className="w-8" /> {/* 占位，保持对称 */}
+            </div>
           </div>
           <div className="flex-1 p-4 overflow-y-auto space-y-4 pb-32">
             {leftChat.messages.map((message, index) => (
-              <ChatMessage key={index} message={message} />
+              <ChatMessage key={index} message={message} isRightChat={false} />
             ))}
             {leftChat.isLoading && (
               <div className="text-center text-zinc-500">
@@ -91,17 +73,26 @@ export default function App() {
 
         {/* Right Chat */}
         <div className="flex-1 flex flex-col">
-          <div className="p-4 border-b border-zinc-800 sticky top-[73px] bg-black z-10">
-            <Input
-              value={rightModel}
-              onChange={(e) => setRightModel(e.target.value)}
-              placeholder="Right model name"
-              className="w-full bg-zinc-800 border-zinc-700 text-white"
-            />
+          <div className="p-4 border-b border-zinc-800 sticky top-0 bg-black z-10">
+            <div className="flex items-center justify-between">
+              <div className="w-8" /> {/* 占位，保持对称 */}
+              <div className="flex items-center gap-2 text-zinc-300">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-base font-bold">Llamatrump</span>
+              </div>
+              <Button
+                variant="icon"
+                onClick={handleClearChat}
+                title="清空对话"
+                className="text-zinc-400 hover:text-white hover:bg-zinc-800"
+              >
+                <Trash2 size={18} />
+              </Button>
+            </div>
           </div>
           <div className="flex-1 p-4 overflow-y-auto space-y-4 pb-32">
             {rightChat.messages.map((message, index) => (
-              <ChatMessage key={index} message={message} />
+              <ChatMessage key={index} message={message} isRightChat={true} />
             ))}
             {rightChat.isLoading && (
               <div className="text-center text-zinc-500">
