@@ -2,14 +2,13 @@ import React from 'react';
 import { Trash2, Settings as SettingsIcon } from 'lucide-react';
 import { ChatMessage } from './components/ChatMessage';
 import { ChatInput } from './components/ChatInput';
-import { Input } from './components/Input';
 import { Button } from './components/Button';
 import { Settings } from './components/Settings';
 import { useChatScroll } from './hooks/useChatScroll';
 import { useOllamaChat } from './hooks/useOllamaChat';
 
 export default function App() {
-  const [apiUrl, setApiUrl] = React.useState('http://localhost:11434');
+  const [apiUrl, setApiUrl] = React.useState('http://39.107.221.209:11434');
   const [leftModel, setLeftModel] = React.useState('llama3.1:8b');
   const [rightModel, setRightModel] = React.useState('Frandy/llamatrump-v1.1');
   const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);

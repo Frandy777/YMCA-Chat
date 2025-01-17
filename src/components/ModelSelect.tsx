@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface ModelSelectProps {
   model: string;
   onModelChange: (model: string) => void;
