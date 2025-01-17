@@ -1,6 +1,7 @@
-import { MessageCircle, Bot } from 'lucide-react';
+import { User } from 'lucide-react';
 import { Message } from '../types/chat';
 import trumpImage from '../assets/TrumpHappy.png';
+import metaImage from '../assets/meta.svg';
 
 interface ChatMessageProps {
   message: Message;
@@ -19,11 +20,11 @@ export function ChatMessage({ message, isRightChat = false }: ChatMessageProps) 
         ${isUser ? 'bg-gradient-to-br from-[#FFFFFF] to-[#D5D5D5] backdrop-blur-sm shadow-[0_4px_12px_rgba(255,255,255,0.3)]' : 
         'bg-gradient-to-br from-zinc-800 to-zinc-900 backdrop-blur-sm shadow-[0_4px_12px_rgba(0,0,0,0.2)]'}`}>
         {isUser ? (
-          <MessageCircle size={20} className="text-black" />
+          <User size={20} className="text-black" />
         ) : isRightChat ? (
           <img src={trumpImage} alt="Trump" className="w-full h-full object-cover" />
         ) : (
-          <Bot size={20} className="text-white" />
+          <img src={metaImage} alt="Meta" className="w-7 h-7" />
         )}
       </div>
       <div className={`flex flex-col ${isUser ? 'items-end' : 'items-start'} max-w-[65%]`}>

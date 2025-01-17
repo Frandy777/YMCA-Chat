@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trash2, Settings as SettingsIcon } from 'lucide-react';
+import { Eraser, Settings as SettingsIcon } from 'lucide-react';
 import { ChatMessage } from './components/ChatMessage';
 import { ChatInput } from './components/ChatInput';
 import { Button } from './components/Button';
@@ -8,7 +8,7 @@ import { useChatScroll } from './hooks/useChatScroll';
 import { useOllamaChat } from './hooks/useOllamaChat';
 
 export default function App() {
-  const [apiUrl, setApiUrl] = React.useState('http://39.107.221.209:11434');
+  const [apiUrl, setApiUrl] = React.useState('http://39.107.221.209:8000');
   const [leftModel, setLeftModel] = React.useState('llama3.1:8b');
   const [rightModel, setRightModel] = React.useState('Frandy/llamatrump-v1.1');
   const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
@@ -85,7 +85,7 @@ export default function App() {
                 title="清空对话"
                 className="text-zinc-400 hover:text-white hover:bg-zinc-800"
               >
-                <Trash2 size={18} />
+                <Eraser size={18} />
               </Button>
             </div>
           </div>
