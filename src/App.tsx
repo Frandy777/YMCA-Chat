@@ -9,7 +9,7 @@ import { useOllamaChat } from './hooks/useOllamaChat';
 
 export default function App() {
   const [apiUrl, setApiUrl] = React.useState('http://39.107.221.209:8000');
-  const [leftModel, setLeftModel] = React.useState('llama3.1:8b');
+  const [leftModel, setLeftModel] = React.useState('llama3.1');
   const [rightModel, setRightModel] = React.useState('Frandy/llamatrump-v1.1');
   const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
   
