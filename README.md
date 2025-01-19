@@ -1,6 +1,6 @@
-# YMCA - AI 模型对比工具
+# llamatrump的对话体验前端
 
-YMCA 是一个基于 React 和 Ollama 的 AI 模型对比工具，允许用户同时与两个不同的 AI 模型进行对话，直观地比较它们的响应差异。
+这个项目是llamatrump的对话体验前端，允许用户与AI进行对话。
 
 ## 功能特点
 
@@ -12,8 +12,6 @@ YMCA 是一个基于 React 和 Ollama 的 AI 模型对比工具，允许用户�
 ## 安装要求
 
 - Node.js 16.0 或更高版本
-- Ollama 服务（需要预先安装）
-- 将ollama模型拉取至本地
 
 ## 快速开始
 
@@ -29,15 +27,7 @@ npm run dev
 
 ## 使用说明
 
-1. 确保 Ollama 服务正在运行（默认地址：http://localhost:11434）
-
-2. 安装所需的模型：
-```bash
-ollama pull Frandy/llamatrump-v1.1
-ollama pull llama3.1
-```
-
-3. 启动应用后，可以：
+1. 启动应用后，可以：
    - 在左右两侧分别选择不同的模型
    - 在底部输入框中输入问题
    - 同时查看两个模型的回复
@@ -52,6 +42,4 @@ ollama pull llama3.1
 
 ## 注意事项
 
-- 确保 Ollama 服务正常运行
-- 确保所需模型已经安装
-- 网络连接正常且稳定 
+- 网络连接正常且稳定
